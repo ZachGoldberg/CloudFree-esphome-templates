@@ -1,9 +1,19 @@
 substitutions:
   name: "sonoff-s31"
   friendly_name: "Sonoff S31"
+  relay_restore_mode:
+    type: select
+    options: # These will appear in the dropdown
+      - RESTORE_DEFAULT_OFF
+      - RESTORE_DEFAULT_ON
+      - RESTORE_INVERTED_DEFAULT_OFF
+      - RESTORE_INVERTED_DEFAULT_ON
+      - ALWAYS_OFF
+      - ALWAYS_ON
+    default: RESTORE_DEFAULT_ON # Set a safe, common default
 
 dashboard_import:
-  package_import_url: github://ItsHarper/CloudFree-esphome-templates/sonoff-s31.yaml
+  package_import_url: github://ZachGoldberg/CloudFree-esphome-templates/sonoff-s31.yaml
   import_full_config: false
 
 esphome:
@@ -11,8 +21,8 @@ esphome:
   friendly_name: "${friendly_name}"
   name_add_mac_suffix: true
   project:
-    name: "CloudFree.S31-Harper"
-    version: "1.0.6"
+    name: "CloudFree.S31-ZG"
+    version: "1.0.7"
 esp8266:
   board: esp12e
   early_pin_init: false
@@ -106,7 +116,7 @@ switch:
     name: "Relay"
     pin: GPIO12
     id: relay
-    restore_mode: RESTORE_DEFAULT_OFF
+    restore_mode: ${relay_restore_mode}
 
 time:
   - platform: homeassistant # Required for total_daily_energy
