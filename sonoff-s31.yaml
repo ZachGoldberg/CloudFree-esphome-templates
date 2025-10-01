@@ -32,7 +32,6 @@ esp8266:
 
 wifi:
   ap:
-  enable_ipv6: false
 
 captive_portal:
 
