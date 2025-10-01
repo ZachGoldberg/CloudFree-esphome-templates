@@ -32,7 +32,6 @@ web_server:
 
 wifi:
   ap:
-  enable_ipv6: false
 
 captive_portal:
 
