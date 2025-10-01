@@ -27,8 +27,8 @@ esp8266:
   board: esp12e
   early_pin_init: false
 
-web_server:
-  local: true
+# web_server:
+#   local: true
 
 wifi:
   ap:
@@ -49,96 +49,96 @@ text_sensor:
 
 # Device Specific Config
 
-logger:
-  baud_rate: 0 # (UART logging interferes with cse7766)
-  logs:
-    sensor: DEBUG # (Overide any global setting, to VERBOSE will spamming the cse7766 sensors)
+# logger:
+#   baud_rate: 0 # (UART logging interferes with cse7766)
+#   logs:
+#     sensor: DEBUG # (Overide any global setting, to VERBOSE will spamming the cse7766 sensors)
 
 uart:
   rx_pin: RX
   baud_rate: 4800
   parity: EVEN
 
-binary_sensor:
-  - platform: gpio
-    pin:
-      number: GPIO0
-      mode: INPUT_PULLUP
-      inverted: True
-    name: "Button"
-    on_press:
-      - switch.toggle: relay
-  - platform: status
-    name: "Status"
+# binary_sensor:
+#   - platform: gpio
+#     pin:
+#       number: GPIO0
+#       mode: INPUT_PULLUP
+#       inverted: True
+#     name: "Button"
+#     on_press:
+#       - switch.toggle: relay
+#   - platform: status
+#     name: "Status"
 
-sensor:
-  - platform: wifi_signal
-    name: "WiFi Signal"
-    update_interval: 60s
-  - platform: cse7766
-    current:
-      name: "Current"
-      accuracy_decimals: 2
-      filters:
-        - throttle_average: 60s
-    voltage:
-      name: "Voltage"
-      accuracy_decimals: 2
-      filters:
-        - throttle_average: 60s
-    power:
-      name: "Power"
-      accuracy_decimals: 2
-      id: my_power
-      filters:
-        - throttle_average: 60s
-    energy:
-      name: "Energy"
-      accuracy_decimals: 2
-      filters:
-        - throttle: 60s
-    apparent_power: #(only available with version 2024.3.0 or greater)
-      name: "Apparent Power"
-      filters:
-        - throttle_average: 60s
-    power_factor: #(only available with version 2024.3.0 or greater)
-      name: "Power Factor"
-      accuracy_decimals: 2
-      filters:
-        - throttle_average: 60s
+# sensor:
+#   - platform: wifi_signal
+#     name: "WiFi Signal"
+#     update_interval: 60s
+#   - platform: cse7766
+#     current:
+#       name: "Current"
+#       accuracy_decimals: 2
+#       filters:
+#         - throttle_average: 60s
+#     voltage:
+#       name: "Voltage"
+#       accuracy_decimals: 2
+#       filters:
+#         - throttle_average: 60s
+#     power:
+#       name: "Power"
+#       accuracy_decimals: 2
+#       id: my_power
+#       filters:
+#         - throttle_average: 60s
+#     energy:
+#       name: "Energy"
+#       accuracy_decimals: 2
+#       filters:
+#         - throttle: 60s
+#     apparent_power: #(only available with version 2024.3.0 or greater)
+#       name: "Apparent Power"
+#       filters:
+#         - throttle_average: 60s
+#     power_factor: #(only available with version 2024.3.0 or greater)
+#       name: "Power Factor"
+#       accuracy_decimals: 2
+#       filters:
+#         - throttle_average: 60s
 
-  - platform: total_daily_energy #(Optional, not specific to cse7766)
-    name: "Daily Energy"
-    power_id: my_power
-    accuracy_decimals: 2
+#   - platform: total_daily_energy #(Optional, not specific to cse7766)
+#     name: "Daily Energy"
+#     power_id: my_power
+#     accuracy_decimals: 2
 
-switch:
-  - platform: gpio
-    name: "Relay"
-    pin: GPIO12
-    id: relay
-    restore_mode: ${relay_restore_mode}
+# switch:
+#   - platform: gpio
+#     name: "Relay"
+#     pin: GPIO12
+#     id: relay
+#     restore_mode: ${relay_restore_mode}
     
-select:
-  - platform: template
-    name: "${friendly_name} Restore Mode"
-    id: relay_restore_mode_runtime
-    options:
-      - RESTORE_DEFAULT_OFF
-      - RESTORE_DEFAULT_ON
-      - RESTORE_INVERTED_DEFAULT_OFF
-      - RESTORE_INVERTED_DEFAULT_ON
-      - ALWAYS_OFF
-      - ALWAYS_ON
-    optimistic: true
-    restore: true    
-    initial_option: "RESTORE_DEFAULT_ON" 
+# select:
+#   - platform: template
+#     name: "${friendly_name} Restore Mode"
+#     id: relay_restore_mode_runtime
+#     options:
+#       - RESTORE_DEFAULT_OFF
+#       - RESTORE_DEFAULT_ON
+#       - RESTORE_INVERTED_DEFAULT_OFF
+#       - RESTORE_INVERTED_DEFAULT_ON
+#       - ALWAYS_OFF
+#       - ALWAYS_ON
+#     optimistic: true
+#     restore: true    
+#     initial_option: "RESTORE_DEFAULT_ON" 
     
-time:
-  - platform: homeassistant # Required for total_daily_energy
-    id: homeassistant_time
+# time:
+#   - platform: homeassistant # Required for total_daily_energy
+# #     id: homeassistant_time
 
-status_led:
-  pin:
-    number: GPIO13
-    inverted: True
+# status_led:
+#   pin:
+#     number: GPIO13
+#     inverted: True
