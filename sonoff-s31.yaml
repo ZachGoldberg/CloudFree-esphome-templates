@@ -120,7 +120,7 @@ switch:
     
 select:
   - platform: template
-    name: "${friendly_name} Restore Mode"
+    name: "Restore Mode"
     id: relay_restore_mode_runtime
     options:
       - RESTORE_DEFAULT_OFF
