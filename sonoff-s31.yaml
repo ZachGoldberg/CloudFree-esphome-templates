@@ -130,7 +130,7 @@ select:
       - ALWAYS_OFF
       - ALWAYS_ON
     optimistic: true
-    restore: true    
+    restore_value: true    
     initial_option: "RESTORE_DEFAULT_ON" 
     
 time:
